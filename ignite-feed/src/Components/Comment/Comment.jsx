@@ -1,3 +1,4 @@
+import { Avatar } from '../Avatar/Avatar';
 import styles from './Comment.module.css';
 import {ThumbsUp, Trash} from 'phosphor-react';
 
@@ -6,7 +7,10 @@ export function Comment (){
 
         <div className={styles.comment}>
             <div>           
-                <img src="https://i.redd.it/meu-gato-%C3%A9-praticamente-o-gato-do-meme-v0-n9dleoj8dgfc1.jpg?width=720&format=pjpg&auto=webp&s=426eb562eddf7898e5ba777104b7065552be8114"/>
+                <Avatar 
+                    src="https://i.redd.it/meu-gato-%C3%A9-praticamente-o-gato-do-meme-v0-n9dleoj8dgfc1.jpg?width=720&format=pjpg&auto=webp&s=426eb562eddf7898e5ba777104b7065552be8114"
+                    hasBorder={false}
+                />    
             </div>
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>

@@ -1,39 +1,44 @@
+import { format, formatDistanceToNow } from 'date-fns'
+import  ptBr from 'date-fns/locale/pt-BR'
+
 import styles from './Post.module.css'
+
 import {Comment} from '../Comment/Comment'
+import {Avatar} from '@/Components/Avatar/Avatar'
 
-export function Post (){
+export function Post (props){
 
+    const publishedDateFormatted = format(props.publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
+        locale: ptBr,
+    });
+
+
+    const publishedDateRelativeToNow = formatDistanceToNow(props.publishedAt, {
+        locale: ptBr,
+        addSuffix: true,
+    })
+
+    
     return(
         <article className={styles.post}>
 
             <header>
                 <div className={styles.author}>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNwJ8CO37x77O9tgO5xFOYaOCflGMMI13_0Q&s"></img>
-                
+                <Avatar 
+                    src={props.author.avatarUrl}
+                    hasBorder={true}
+                />                
                     <div className={styles.authorInfo}>
-                        <strong>Estefane Andrade</strong>
-                        <span>Front End Developer</span>
+                        <strong>{props.author.name}</strong>
+                        <span>{props.author.role}</span>
                     </div>
                 </div>
-                <time title="02 de Dezembro às 13:30h" dateTime="2024-02-12 13:33:05">Publicado há 3 minutos</time>
+                <time title={publishedDateFormatted} dateTime={props.publishedAt.toISOString()}>{publishedDateRelativeToNow}</time>
 
             </header>
 
             <div className={styles.content}>
-                <p>
-                    <p>Fala galeraa 👋</p>
-                    <p>Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
-
-                    <p>
-                        <a href="#">👉 jane.design/doctorcare</a>
-                    </p>
-                    <p className={styles.hashtags}>
-                        <a href="#"> #novoprojeto </a>
-                        <a href="#"> #nlw </a>
-                        <a href="#"> #rocketseat </a>
-                    </p>
-
-                </p>
+                    {props.content}
             </div>
 
             <form className={styles.newComment}>
@@ -49,9 +54,7 @@ export function Post (){
             </form>
 
             <div className={styles.commentList}>
-                <Comment />
-                <Comment />
-                <Comment />
+                
             </div>
         </article>
     

@@ -1,13 +1,8 @@
 .comment{
+    box-sizing: border-box;
     margin-top: 1.5rem;
     display: flex;
     gap: 1rem;
-}
-
-img{
-    width: 4rem;
-    height: 4rem;
-    border-radius: 8px;
 }
 
 .commentBox{
